@@ -18,8 +18,10 @@ public class ToDoService {
 		todos.add(new ToDo(++todosCount, "taivo28minutes", "Learn Jenskin", LocalDate.now().plusYears(1),false));
 		todos.add(new ToDo(++todosCount, "taivo28minutes", "Learn SonarQB", LocalDate.now().plusYears(1),false));
 	}
-	
-	public List<ToDo> findByUsername(String username){
+
+
+
+    public List<ToDo> findByUsername(String username){
 		return todos;
 	}
 
@@ -31,5 +33,10 @@ public class ToDoService {
 	public void deleteById(int id){
 		Predicate<? super ToDo> predicate = todo -> todo.getId() == id;
 		todos.removeIf(predicate);
+	}
+
+	public static ToDo findById(int id) {
+		Predicate<? super ToDo> predicate = todo -> todo.getId() == id;
+		return todos.stream().filter(predicate).findFirst().get();
 	}
 }

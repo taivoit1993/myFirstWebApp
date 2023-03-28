@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +51,12 @@ public class TodoController {
 	public String deleteTodo(@RequestParam int id) {
 		toDoService.deleteById(id);
 		return "redirect:list-todos";
+	}
+
+	@RequestMapping("update-todo")
+	public String updateTodo(@RequestParam int id, ModelMap model) {
+		ToDo todos = ToDoService.findById(id);
+		model.addAttribute("todo", todos);
+		return "addTodo";
 	}
 }

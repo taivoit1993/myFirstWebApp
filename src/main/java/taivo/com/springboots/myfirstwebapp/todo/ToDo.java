@@ -1,6 +1,9 @@
 package taivo.com.springboots.myfirstwebapp.todo;
 
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
+import java.util.function.Predicate;
 
 public class ToDo {
 	
@@ -14,6 +17,7 @@ public class ToDo {
 	}
 	private int id;
 	private String username;
+	@Size(min=10, message = "Enter at lease 10 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
@@ -48,7 +52,7 @@ public class ToDo {
 	public void setDone(boolean done) {
 		this.done = done;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ToDo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="

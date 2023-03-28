@@ -35,7 +35,7 @@ public class LoginController {
 		if(valid) {
 			model.put("name", name);
 			model.put("password", password);
-			return "welcome";
+			return "listTodo";
 		}
 		model.put("errorMessage", "Invalid Credentials! Please try again.");
 		return "login";

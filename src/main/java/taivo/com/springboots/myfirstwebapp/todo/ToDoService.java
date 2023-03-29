@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import jakarta.validation.Valid;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,10 @@ public class ToDoService {
 	public static ToDo findById(int id) {
 		Predicate<? super ToDo> predicate = todo -> todo.getId() == id;
 		return todos.stream().filter(predicate).findFirst().get();
+	}
+
+	public void updateTodo(@Valid ToDo todo) {
+		deleteById(todo.getId());
+		todos.add(todo);
 	}
 }

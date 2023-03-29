@@ -12,14 +12,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 	
-	private AuthenticationService authenticationService;
-	public LoginController(AuthenticationService authenticationService) {
-		super();
-		this.authenticationService = authenticationService;
-	}
+//	private AuthenticationService authenticationService;
+//	public LoginController(AuthenticationService authenticationService) {
+//		super();
+//		this.authenticationService = authenticationService;
+//	}
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
-	
+
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	public String gotoWelcomePage(ModelMap model) {
+		model.put("name","taivo");
+		return "welcome";
+	}
+
 	@RequestMapping(value = "login-jsp",method = RequestMethod.GET)
 	public String loginView() {
 		logger.info("I wanted printed at info level");
@@ -27,17 +33,17 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "login-jsp",method = RequestMethod.POST)
-	public String welcomeView(@RequestParam String name, 
-			@RequestParam String password, 
-			ModelMap model) {
-		Boolean valid = authenticationService.validateLogin(name, password);
-		if(valid) {
-			model.put("name", name);
-			model.put("password", password);
-			return "listTodo";
-		}
-		model.put("errorMessage", "Invalid Credentials! Please try again.");
-		return "login";
-	}
+//	@RequestMapping(value = "login-jsp",method = RequestMethod.POST)
+//	public String welcomeView(@RequestParam String name,
+//			@RequestParam String password,
+//			ModelMap model) {
+//		Boolean valid = authenticationService.validateLogin(name, password);
+//		if(valid) {
+//			model.put("name", name);
+//			model.put("password", password);
+//			return "listTodo";
+//		}
+//		model.put("errorMessage", "Invalid Credentials! Please try again.");
+//		return "login";
+//	}
 }

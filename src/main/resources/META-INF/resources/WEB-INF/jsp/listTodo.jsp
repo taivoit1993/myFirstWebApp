@@ -5,6 +5,7 @@
     <title>List Todo Page </title>
 </head>
 <body>
+<%@ include file="common/navigation.jspf" %>
 <div class="container">
     <h1>Welcome to listTodo</h1>
     <hr/>
